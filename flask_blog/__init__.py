@@ -22,5 +22,5 @@ def create_app():
     app.register_blueprint(main)
 
     # db.init_app(app) требует,
-    # чтобы SQLALCHEMY_DATABASE_URI уже был задан в app.config.
+        # чтобы SQLALCHEMY_DATABASE_URI уже был задан в app.config.
     return app
