@@ -12,6 +12,17 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
 
+    #В SQLAlchemy атрибуты модели (username, email, password и т.д.) создаются через db.Column(),
+    # а не через обычный конструктор Python с параметрами.
+    # По умолчанию класс User не имеет явно определённого метода __init__,
+    # принимающего эти аргументы, поэтому IDE может считать,
+    # что такие параметры при создании объекта недопустимы. Решение ↓ создать __init__
+    def __init__(self, username, email, password, image_file='default.png'):
+        self.username = username
+        self.email = email
+        self.password = password
+        self.image_file = image_file
+
     def __repr__(self):
         return f"Пользователь('{self.username}, " \
                f"{self.email}', '{self.image_file}')"

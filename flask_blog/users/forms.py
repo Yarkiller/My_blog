@@ -54,7 +54,7 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(username=username.data).first()
             if user:
                 raise ValidationError('Это имя занято. '
-                                      'Пожалуйста, выберите другой')
+                                      'Пожалуйста, выберите другое')
 
     def validate_email(self, email):
         if email.data != current_user.email:
